@@ -18,10 +18,10 @@ const (
 	watchPath = "."
 
 	// Various error messages
-	killInstanceErrMsg = "Reloadr: ERROR - Unable to kill the previous instance of application ( %s ). " +
+	killInstanceErrMsg = "reloadr: ERROR - Unable to kill the previous instance of application ( %s ). " +
 		"Please manually kill the application insance and try agian. Reloadr has terminated as a result.\n"
-	buildInstallErrMsg = "Reloadr: ERROR - Unable to build/install application: ( %s )\n"
-	startAppErrMsg     = "Reloadr: ERROR - Unable to start application: ( %s )\n"
+	buildInstallErrMsg = "reloadr: ERROR - Unable to build/install application: ( %s )\n"
+	startAppErrMsg     = "reloadr: ERROR - Unable to start application: ( %s )\n"
 )
 
 type reloadr struct {
@@ -44,16 +44,16 @@ type responder struct{}
 
 func (resp *responder) onChange(r *reloadr, event fsnotify.Event) {
 	fmt.Println("--------------------------------------------------")
-	fmt.Println("Reloadr: Change detected -->", event.Name) // filename/path
+	fmt.Println("reloadr: Change detected -->", event.Name) // filename/path
 	r.installAndRunApplication()
 	time.Sleep(25 * time.Millisecond)
 	if !r.terminated {
-		fmt.Println("Reloadr: Watching for changes...")
+		fmt.Println("reloadr: Watching for changes...")
 	}
 }
 
 func (resp *responder) onErr(r *reloadr, err error) {
-	fmt.Printf("Reloadr: ERROR - Detecting file changes: %s. Reloader has now terminated.\n", err)
+	fmt.Printf("reloadr: ERROR - Detecting file changes: %s. Reloader has now terminated.\n", err)
 	r.terminated = true
 	close(r.stopCh)
 }
@@ -81,9 +81,9 @@ func (r *reloadr) start() {
 	go r.watch()
 
 	fmt.Println("")
-	fmt.Println("-- RELOADR v0.1.0 --")
+	fmt.Println("-- reloadr v0.1.0 --")
 	fmt.Println("--------------------------------------------------")
-	fmt.Println("Reloadr: Running and watching for changes...")
+	fmt.Println("reloadr: Running and watching for changes...")
 	fmt.Println("         On:", r.watchExts, "files.")
 	fmt.Println("--------------------------------------------------")
 
@@ -131,11 +131,11 @@ func (r *reloadr) installApplication() error {
 
 	cmdErrOutputPipe, _ := cmd.StderrPipe()
 
-	fmt.Println("Reloadr: Building application...")
+	fmt.Println("reloadr: Building application...")
 
 	err := cmd.Start()
 	if err != nil {
-		fmt.Println(`Reloadr: ERROR - Unable to execute "go install". Reloadr will now terminate.`)
+		fmt.Println(`reloadr: ERROR - Unable to execute "go install". Reloadr will now terminate.`)
 		r.terminated = true
 		close(r.stopCh)
 		return err
@@ -149,7 +149,7 @@ func (r *reloadr) installApplication() error {
 		fmt.Println(r.appName+":", string(errOutput))
 		return err
 	}
-	fmt.Println("Reloadr: Done...")
+	fmt.Println("reloadr: Done...")
 	return nil
 }
 
@@ -185,7 +185,7 @@ func (r *reloadr) runApplication() {
 		}
 	}(errOutput)
 
-	fmt.Println("Reloadr: (", r.appName, ") - Started and running...")
+	fmt.Println("reloadr: (", r.appName, ") - Started and running...")
 
 	// Wait for the application to finish.
 	// (We ignore error messages from wait - unless the server shuts down gracefully, we'd have false positives)
