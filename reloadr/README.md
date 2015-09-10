@@ -24,7 +24,7 @@ Go application to reload (rebuild/install and run) Go applications when source c
 ## Installation
 To install, enter the following in your terminal of choice:
 
-`go get github.com/cgons/go-reloadr`
+`go get github.com/cgons/go-reloadr/reloadr`
 
 After executing the above, Go will have placed a binary file (`reloadr`) in the "bin" directory of your $GOPATH
 
