@@ -1,5 +1,5 @@
 # Go-Reloadr
-Go application to reload (rebuild/install and run) Go applications when source code changes are detected.
+Command line utility to reload (rebuild/install and run) Go applications when source code changes are detected.
 
 
 **Latest version: v0.1.0**
@@ -19,7 +19,7 @@ Go application to reload (rebuild/install and run) Go applications when source c
     - [ ] a config file (`.reloadr.conf`)
 - [ ] Support passing args/flags to your application executable
 - [ ] Colourize `reloadr` output
-- [ ] Complete test suite & imporoved coverage
+- [ ] Complete test suite & improved coverage
 
 ## Installation
 To install, enter the following in your terminal of choice:
@@ -56,7 +56,7 @@ See: [Golang.org - Writing Go Code](https://golang.org/doc/code.html) and [Go Wi
 ## Similar Projects
 - Gin (https://github.com/codegangsta/gin)
 - Fresh (https://github.com/pilu/fresh)
-- ComplieDaemon (https://github.com/githubnemo/CompileDaemon)
+- CompileDaemon (https://github.com/githubnemo/CompileDaemon)
 - rerun (https://github.com/skelterjohn/rerun)
 - go-reload (bash script) (https://github.com/alexedwards/go-reload)
 
